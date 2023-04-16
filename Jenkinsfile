@@ -1,7 +1,7 @@
 pipeline {
     agent any
     
-    stager {
+    stages {
         
         stage ('Build docker Image') {
             steps {
