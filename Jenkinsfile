@@ -6,7 +6,7 @@ pipeline {
         stage ('Build docker Image') {
             steps {
                 script {
-                    dockerapp = docker.build("joaosilvadev/project-devops:${env.BUILD_ID}", "-f Dockerfile")
+                    dockerapp = docker.build("joaosilvadev/project-devops:${env.BUILD_ID}", "-f ./Dockerfile ./src")
                 }
             }
         }
