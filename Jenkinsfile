@@ -26,11 +26,11 @@ pipeline {
         stage ('Deploy Kubernetes'){
             steps{
                 script{
-                    withKubeConfig([credentialsId: 'kubeconfig']){
+                    withAWS (credentialsId: 'aws', region: 'us-west-2') {
+                        sh 'aws eks update-kubenconfig --name demo-terraform --region us-west-2'
                         sh 'kubectl apply -f ./k8s/deployment.yaml'
                     }
                 }
             }
         }
-    }
 }
