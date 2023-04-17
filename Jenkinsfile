@@ -27,7 +27,7 @@ pipeline {
             steps{
                 script{
                     withAWS (credentialsId: 'aws', region: 'us-west-2') {
-                        sh ("aws eks update-kubenconfig --name demo-terraform --region us-west-2")
+                        sh ("aws eks --region us-west-2 update-kubeconfig --name demo-terraform")
                         sh 'kubectl apply -f ./k8s/deployment.yaml'
                     }
                 }
