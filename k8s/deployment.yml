@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: temperatura
-        image: joaosilvadev/project-devops:1
+        image: joaosilvadev/project-devops:{{TAG}}
         ports:
         - containerPort: 8080
 ---

@@ -24,10 +24,14 @@ pipeline {
         }
 
         stage ('Deploy Kubernetes'){
+            environment{
+                tag_version = "${env.BUILD_ID}"
+            }
             steps{
                 script{
                     withAWS (credentials: 'teste_supremo', region: 'us-west-2') {
                         sh ("aws eks --region us-west-2 update-kubeconfig --name demo-terraform")
+                        sh 'sed -i "s/{{TAG}}/$tag_version/g" ./k8s/deployment.yaml'
                         sh 'kubectl apply -f ./k8s/deployment.yml'
                     }
                 }
